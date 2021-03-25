@@ -1,11 +1,15 @@
 name: 'Remove PR Labels'
 description: 'Remove labels of a Pull Request on GitHub'
 inputs:
-  github_token:
-    description: 'GitHub token'
-    required: true
+  GITHUB_TOKEN:
+    description: 'A GitHub token.'
+    required: false
+    default: ${{ github.token }}
+  LABELS:
+    description: 'An array of labels to remove, separated by commas. If not specified, all will be removed from the issue.'
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.github_token }}
+    - ${{ inputs.GITHUB_TOKEN }}
