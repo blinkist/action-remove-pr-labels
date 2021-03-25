@@ -1,0 +1,31 @@
+{
+  "name": "remove-pr-labels",
+  "version": "1.0.0",
+  "description": "Remove labels of a Pull Request on GitHub",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -r ts-node/register 'test/**/*.ts'",
+    "build": "rm -rf build && tsc",
+    "lint": "eslint '{src,test}/**/*'"
+  },
+  "author": "Majd Alfhaily <majd@alfhaily.me>",
+  "private": true,
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/github": "^4.0.0",
+    "@octokit/rest": "^18.4.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.15",
+    "@types/mocha": "^8.2.2",
+    "@types/node": "^14.14.35",
+    "@typescript-eslint/eslint-plugin": "^4.19.0",
+    "@typescript-eslint/parser": "^4.19.0",
+    "chai": "^4.3.4",
+    "eslint": "^7.22.0",
+    "mocha": "^8.3.2",
+    "prettier": "^2.2.1",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.3"
+  }
+}

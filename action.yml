@@ -1,0 +1,11 @@
+name: 'Remove PR Labels'
+description: 'Remove labels of a Pull Request on GitHub'
+inputs:
+  github_token:
+    description: 'GitHub token'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.github_token }}
