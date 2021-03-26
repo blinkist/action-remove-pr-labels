@@ -13,7 +13,9 @@ const execute = async (
   try {
     if (labels.length !== 0) {
       for (const label of labels) {
-        core.info(`Removing label '${label}' from ${owner}/${repo}:${issueNumber}`);
+        if (process.env['NODE_ENV'] !== 'test') {
+          core.info(`Removing label '${label}' from ${owner}/${repo}:${issueNumber}`);
+        }
 
         await client.issues.removeLabel({
           owner,
@@ -23,7 +25,9 @@ const execute = async (
         });
       }
     } else {
-      core.info(`Removing all labels from ${owner}/${repo}:${issueNumber}`);
+      if (process.env['NODE_ENV'] !== 'test') {
+        core.info(`Removing all labels from ${owner}/${repo}:${issueNumber}`);
+      }
 
       await client.issues.removeAllLabels({
         owner,
@@ -32,12 +36,18 @@ const execute = async (
       });
     }
   } catch (error) {
-    core.error(error.message);
+    if (process.env['NODE_ENV'] !== 'test') {
+      core.error(error.message);
+    }
   }
 };
 
+const labels = ((): string[] => {
+  const input = core.getInput('LABELS', { required: false });
+  return input === '' ? [] : input.split(',');
+})();
+
 const token = core.getInput('GITHUB_TOKEN', { required: true });
-const labels = core.getInput('LABELS', { required: false }).split(',');
 const { repo, owner } = github.context.repo;
 const issueNumber = github.context.issue.number;
 
