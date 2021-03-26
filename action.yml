@@ -6,10 +6,11 @@ inputs:
     required: false
     default: ${{ github.token }}
   LABELS:
-    description: 'An array of labels to remove, separated by commas. If not specified, all will be removed from the issue.'
+    description: 'An array of labels to remove, separated by commas. If not specified, all labels will be removed from the issue.'
     required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
     - ${{ inputs.GITHUB_TOKEN }}
+    - ${{ inputs.LABELS }}
